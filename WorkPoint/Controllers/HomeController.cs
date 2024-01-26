@@ -1,16 +1,17 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using WorkPoint.DAL;
 using WorkPoint.Models;
 
 namespace WorkPoint.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private WorkPointDB db;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(WorkPointDB db)
         {
-            _logger = logger;
+            this.db = db;
         }
 
         public IActionResult Index()
