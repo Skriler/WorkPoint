@@ -75,19 +75,18 @@
         </modal>
     </div>
 
-
-
-
     <div id="app">
 
-        <component v-bind:is="currentTabComponent"></component>
+        <component v-bind:is="currentTabComponent"
+            v-bind:quest="quests"
+            v-bind:i="i"
+            v-on:next="i++"
+            v-on:prev="i--">
+        </component>
         
 
     </div>
     
-
-
-
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="code.js"></script>
     <script src="modal.js"></script>
