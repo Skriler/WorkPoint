@@ -145,7 +145,7 @@ body{
 
 .main_head{
     position: absolute;
-    width: 800px;
+    width: 1200px;
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
@@ -161,10 +161,8 @@ body{
     letter-spacing: 0.33em;
 }
 
-
-
 .main_head .txt p{
-    width: 700px;
+    width: 1200px;
     font-size: 30px;
     letter-spacing: 0;
 }
@@ -300,47 +298,41 @@ body{
     transform: scale(1.1);
 }
 
-.main_head .row{
-    width: 100%;
-}
-
 .skills{
     position:absolute;
-    top: 70px;
+    top: 120px;
+    width: 1200px;
 }
 
 .check{
-    left:0px;
-    right: 0px;
-    border-radius: 4px;
+    border-radius: 30px;
+    width: 250px;
     border: 1px solid #fff;
     overflow: hidden;
-    float: left;
-    margin: 5px 0px 5px 0px;
-
+    margin: 15px 30px 15px 30px;
 }
 
 .check label{
-    float: left; 
-    line-height: 34px;
-    width: 190px;
-    height: 34px;
+    border-radius: 30px;
+    vertical-align: middle;
+    width: 250px;
+    height: 70px;
 }
 
 .check label span{
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
-    font-size: 26px;
-    line-height: 34px;
-    text-align: center;
+    font-size: 24px;
+    height: 70px;
+    align-items: center;
+    justify-content: center;
     padding: 3px 0;
-    display: block;
+    display: flex;
 }
 
 .check label input {
     position: absolute;
-
     display: none;
     color: #fff !important;
 }
@@ -348,6 +340,11 @@ body{
 .check label input + span{color: #fff;}
 
 .check input:checked + span {
+    color: #000000;
+    background-color: #FFFFFF;
+}
+
+.check input:hover + span {
     color: #000000;
     background-color: #FFFFFF;
 }
