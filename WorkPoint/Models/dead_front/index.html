@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <script type="text/x-template" id="modal-template">
+        <transition name="modal">
+          <div class="modal-mask">
+            <div class="modal-wrapper">
+              <div class="modal-container">
+                <div class="modal-header">
+                  <slot name="header"></slot>
+                </div>
+  
+                <div class="modal-body">
+                  <slot name="body"></slot>
+                </div>
+  
+                <div class="modal-footer">
+                    <button class="rect_2" @click="$emit('close')">
+                        <div class="txt"><p>Закрити</p></div>
+                    </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </transition>
+      </script>
+      <link rel="shortcut icon" href="icon.png">
+
+      <title>Work Point</title>
+</head>
+<body>
+    <div class="body_rect"></div>
+
+    <div class="home">
+        <div class="row">
+            <div class="col-6">
+                <div class="rect">
+                    <a type="button" href="index.html" class="txt">Головна</a>
+                </div>
+            </div>
+            <div class="col-6" id="about_us">
+                <a type="button" id="show-modal" @click="showModal = true" class="txt">Про нас</a>
+                <modal v-if="showModal" @close="showModal = false">
+                    <h3 slot="header">Про нас</h3>
+                    <div slot="body">
+                        <p>
+                            Програма розроблена 4 студентами... 
+                        </p>
+                        <p>
+                            Дякуємо, що користуєтесь нашим продуктом!
+                        </p>
+                    </div>
+                </modal>
+            </div>
+        </div>
+    </div>
+
+    <div class="how" id="how_it_works">
+        <a type="button" id="show-modal" @click="showModal = true" class="txt">Як це працює?</a>
+        <modal v-if="showModal" @close="showModal = false">
+            <h3 slot="header">Як це працює?</h3>
+            <div slot="body">
+                <p>
+                    Вам потрібно вказати ваші навики.... 
+                </p>
+                <p>
+                    Після обробки вам будуть запропоновані.....
+                </p>
+            </div>
+        </modal>
+    </div>
+
+
+
+
+    <div id="app">
+
+        <div>
+            <div class="main_head">
+                <div class="txt">
+                    <p v-for="n in 5">Вакансія № {{ n }}</p>
+                    <br>
+                    <p>Ці вакансії найліпше вам підходять за вказаними навичками:</p>
+                    <br>
+                    <p v-for="n in 5">Скілл № {{ n }}</p>
+                </div>
+            </div>
+
+            
+        </div>
+        
+
+    </div>
+    
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="code.js"></script>
+    <script src="modal.js"></script>
+</body>
+</html>
