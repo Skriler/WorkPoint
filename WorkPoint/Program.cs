@@ -1,11 +1,11 @@
 using Microsoft.EntityFrameworkCore;
-using WorkPoint.DAL;
+using WorkPoint.SL.DAL;
 
 var builder = WebApplication.CreateBuilder(args);
 
 string connection = builder.Configuration.GetConnectionString("DefaultConnection");
 
-builder.Services.AddDbContext<WorkPointDB>(options => options.UseSqlServer(connection));
+builder.Services.AddDbContext<WorkPointDbContext>(options => options.UseSqlServer(connection));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -14,7 +14,7 @@ var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
 {
-    var dbContext = scope.ServiceProvider.GetRequiredService<WorkPointDB>();
+    var dbContext = scope.ServiceProvider.GetRequiredService<WorkPointDbContext>();
     await DataSeeder.SeedAsync(dbContext);
 }
 

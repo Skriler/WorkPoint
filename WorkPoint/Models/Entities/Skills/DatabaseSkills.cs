@@ -2,7 +2,7 @@
 
 namespace WorkPoint.Models.Entities.Skills
 {
-    public class DatabaseSkills
+    public class DatabaseSkills : ISkills
     {
         [Key]
         public int Id { get; set; }
@@ -27,5 +27,19 @@ namespace WorkPoint.Models.Entities.Skills
 
         [Required]
         public bool MSSQL { get; set; }
+
+        public List<bool> GetSkillsAsList()
+        {
+            return new List<bool>
+            {
+                MYSQL,
+                PostgreSQL,
+                MongoDB,
+                Redis,
+                NoSQL,
+                Oracle,
+                MSSQL
+            };
+        }
     }
 }

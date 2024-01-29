@@ -1,0 +1,15 @@
+﻿@using WorkPoint.Models.Entities
+@model IEnumerable<Speciality>
+@{
+    ViewData["Title"] = "Recommendations";
+}
+
+<div class="text-center">
+    <h1>Recommendations</h1>
+    
+    @foreach (Speciality speciality in Model)
+    {
+        <p>Name: @speciality.Name</p>
+        <p>Salary: @speciality.Salary</p>
+    }
+</div>

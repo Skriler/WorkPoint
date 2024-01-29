@@ -2,9 +2,9 @@
 using WorkPoint.Models.Entities;
 using WorkPoint.Models.Entities.Skills;
 
-namespace WorkPoint.DAL
+namespace WorkPoint.SL.DAL
 {
-    public class WorkPointDB : DbContext
+    public class WorkPointDbContext : DbContext
     {
         public DbSet<Speciality> Specialities { get; set; }
         public DbSet<SoftSkills> SoftSkills { get; set; }
@@ -16,7 +16,7 @@ namespace WorkPoint.DAL
         public DbSet<GraphicEditorsSkills> GESkills { get; set; }
         public DbSet<ExtraSkills> ExtraSkills { get; set; }
 
-        public WorkPointDB(DbContextOptions<WorkPointDB> options)
+        public WorkPointDbContext(DbContextOptions<WorkPointDbContext> options)
             : base(options)
         {
             Database.EnsureCreated();

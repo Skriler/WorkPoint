@@ -1,25 +1,41 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using WorkPoint.DAL;
 using WorkPoint.Models;
+using WorkPoint.Models.ViewModels;
+using WorkPoint.SL;
+using WorkPoint.SL.DAL;
 
 namespace WorkPoint.Controllers
 {
     public class HomeController : Controller
     {
-        private WorkPointDB db;
+        private readonly WorkPointDbContext db;
+        private readonly SpecialityRepository specialityRepository;
 
-        public HomeController(WorkPointDB db)
+        public HomeController(WorkPointDbContext context)
         {
-            this.db = db;
+            db = context;
+            specialityRepository = new SpecialityRepository(db);
         }
 
-        public IActionResult Index()
+        [HttpGet]
+        public ViewResult Index()
         {
             return View();
         }
 
-        public IActionResult Privacy()
+        [HttpGet]
+        public async Task<ViewResult> Recommendations()
+        {
+            var specialities = await specialityRepository.GetSpecialityListAsync();
+
+            var recommendations = SpecialtyRecommendationService.GetRecommendation(new UserInfo(), specialities);
+
+            return View(recommendations);
+        }
+
+        [HttpGet]
+        public ViewResult About()
         {
             return View();
         }

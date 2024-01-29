@@ -2,7 +2,7 @@
 
 namespace WorkPoint.Models.Entities.Skills
 {
-    public class MicrosoftOfficeSkills
+    public class MicrosoftOfficeSkills : ISkills
     {
         [Key]
         public int Id { get; set; }
@@ -18,5 +18,16 @@ namespace WorkPoint.Models.Entities.Skills
 
         [Required]
         public bool Powerpoint { get; set; }
+
+        public List<bool> GetSkillsAsList()
+        {
+            return new List<bool>
+            {
+                Word,
+                Excel,
+                Access,
+                Powerpoint
+            };
+        }
     }
 }

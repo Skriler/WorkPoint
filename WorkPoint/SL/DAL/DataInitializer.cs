@@ -1,9 +1,8 @@
-﻿using System;
-using System.Text.Json;
+﻿using System.Text.Json;
 using WorkPoint.Models.Entities;
 using WorkPoint.Models.Entities.Skills;
 
-namespace WorkPoint.DAL
+namespace WorkPoint.SL.DAL
 {
     public static class DataInitializer
     {

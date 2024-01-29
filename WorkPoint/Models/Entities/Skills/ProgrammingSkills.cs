@@ -2,7 +2,7 @@
 
 namespace WorkPoint.Models.Entities.Skills
 {
-    public class ProgrammingSkills
+    public class ProgrammingSkills : ISkills
     {
         [Key]
         public int Id { get; set; }
@@ -92,5 +92,39 @@ namespace WorkPoint.Models.Entities.Skills
 
         [Required]
         public bool Multithreading { get; set; }
+
+        public List<bool> GetSkillsAsList()
+        {
+            return new List<bool>
+            {
+                HTML,
+                CSS,
+                Bootstrap,
+                PHP,
+                JS,
+                React,
+                NodeJS,
+                Vue,
+                Vuex,
+                RestAPI,
+                Python,
+                PyTest,
+                Mocha,
+                UnitTesting,
+                TypeScript,
+                CPlusPlus,
+                CSharp,
+                DOTNET,
+                HTTP,
+                Dart,
+                Flutter,
+                Swift,
+                OneC,
+                WordPress,
+                PrinciplesOOP,
+                SolidPrinciples,
+                Multithreading
+            };
+        }
     }
 }

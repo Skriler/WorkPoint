@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace WorkPoint.DAL
+namespace WorkPoint.SL.DAL
 {
     public static class DataSeeder
     {
-        public static async Task SeedAsync(WorkPointDB db)
+        public static async Task SeedAsync(WorkPointDbContext db)
         {
             await SeedDbSetAsync(db.HardSkills, DataInitializer.HardSkills);
             await SeedDbSetAsync(db.Specialities, DataInitializer.Specialities);
@@ -19,10 +19,10 @@ namespace WorkPoint.DAL
 
         private static async Task SeedDbSetAsync<T>(DbSet<T> dbSet, List<T> data) where T : class
         {
-            await dbSet.AddRangeAsync(data);
+            if (await dbSet.AnyAsync() || !data.Any())
+                return;
 
-            //if (!await dbSet.AnyAsync() && dbSet.Any())
-            //    await dbSet.AddRangeAsync(data);
+            await dbSet.AddRangeAsync(data);
         }
     }
 }

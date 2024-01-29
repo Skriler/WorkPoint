@@ -2,7 +2,7 @@
 
 namespace WorkPoint.Models.Entities.Skills
 {
-    public class GraphicEditorsSkills
+    public class GraphicEditorsSkills : ISkills
     {
         [Key]
         public int Id { get; set; }
@@ -18,5 +18,16 @@ namespace WorkPoint.Models.Entities.Skills
 
         [Required]
         public bool Photoshop { get; set; }
+
+        public List<bool> GetSkillsAsList()
+        {
+            return new List<bool>
+            {
+                VSCO,
+                Snapseed,
+                Lightroom,
+                Photoshop
+            };
+        }
     }
 }

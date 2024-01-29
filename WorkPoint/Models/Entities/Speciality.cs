@@ -32,10 +32,10 @@ namespace WorkPoint.Models.Entities
 
         [Required]
         public int RequiredSoftSkillsId { get; set; }
-        public SoftSkills? RequiredSoftSkills { get; set; }
+        public SoftSkills RequiredSoftSkills { get; set; } = default!;
 
         [Required]
         public int RequiredHardSkillsId { get; set; }
-        public HardSkills? RequiredHardSkills { get; set; }
+        public HardSkills RequiredHardSkills { get; set; } = default!;
     }
 }

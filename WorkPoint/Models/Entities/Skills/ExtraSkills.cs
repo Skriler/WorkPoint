@@ -2,7 +2,7 @@
 
 namespace WorkPoint.Models.Entities.Skills
 {
-    public class ExtraSkills
+    public class ExtraSkills : ISkills
     {
         [Key]
         public int Id { get; set; }
@@ -30,5 +30,20 @@ namespace WorkPoint.Models.Entities.Skills
 
         [Required]
         public bool Ahrefs { get; set; }
+
+        public List<bool> GetSkillsAsList()
+        {
+            return new List<bool>
+            {
+                Git,
+                GoogleAnalytics,
+                FacebookAnalytics,
+                NetworkProtocols,
+                ComputerNetworks,
+                MaintainingSoftware,
+                NeatpeakSpider,
+                Ahrefs,
+            };
+        }
     }
 }

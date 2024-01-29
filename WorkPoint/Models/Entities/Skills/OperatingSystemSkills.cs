@@ -2,7 +2,7 @@
 
 namespace WorkPoint.Models.Entities.Skills
 {
-    public class OperatingSystemSkills
+    public class OperatingSystemSkills : ISkills
     {
         [Key]
         public int Id { get; set; }
@@ -15,5 +15,15 @@ namespace WorkPoint.Models.Entities.Skills
 
         [Required]
         public bool Linux { get; set; }
+
+        public List<bool> GetSkillsAsList()
+        {
+            return new List<bool>
+            {
+                Windows,
+                Mac,
+                Linux
+            };
+        }
     }
 }
