@@ -58,7 +58,7 @@ body{
     position: absolute;
     width: 285px;
     height: 94px;
-    top: 80%;
+    top: 85%;
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
@@ -72,7 +72,7 @@ body{
     position: absolute;
     width: 140px;
     height: 94px;
-    top: 80%;
+    top: 85%;
     left: 50%;
     margin-right: -50%;
 
@@ -156,7 +156,7 @@ body{
     position: absolute;
     left: 50%;
     margin-right: -50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -120%);
     top: 70px;
     letter-spacing: 0.33em;
 }
@@ -164,7 +164,7 @@ body{
 
 
 .main_head .txt p{
-    width: 800px;
+    width: 700px;
     font-size: 30px;
     letter-spacing: 0;
 }
@@ -200,10 +200,10 @@ body{
 
 .lists{
     position: absolute;
-    top: 400px;
+    top: 700px;
     left: 50%;
     margin-right: -50%;
-    translate: (-150%, 50%);
+    translate: (-150%, 0%);
 }
 
 @media screen and (max-width: 1000px) {
@@ -306,7 +306,7 @@ body{
 
 .skills{
     position:absolute;
-    top: 150px;
+    top: 70px;
 }
 
 .check{
