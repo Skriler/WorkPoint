@@ -34,12 +34,6 @@ namespace WorkPoint.Controllers
             return View(recommendations);
         }
 
-        [HttpGet]
-        public ViewResult About()
-        {
-            return View();
-        }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
