@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 
 namespace WorkPoint.Models.Entities.Skills
 {
@@ -19,14 +20,14 @@ namespace WorkPoint.Models.Entities.Skills
         [Required]
         public bool Powerpoint { get; set; }
 
-        public List<bool> GetSkillsAsList()
+        public Dictionary<string, bool> GetSkillsAsDictionary()
         {
-            return new List<bool>
+            return new Dictionary<string, bool>
             {
-                Word,
-                Excel,
-                Access,
-                Powerpoint
+                { "Word", Word },
+                { "Excel", Excel },
+                { "Access", Access },
+                { "Powerpoint", Powerpoint }
             };
         }
     }

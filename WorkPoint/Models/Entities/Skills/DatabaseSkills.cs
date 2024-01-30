@@ -28,17 +28,17 @@ namespace WorkPoint.Models.Entities.Skills
         [Required]
         public bool MSSQL { get; set; }
 
-        public List<bool> GetSkillsAsList()
+        public Dictionary<string, bool> GetSkillsAsDictionary()
         {
-            return new List<bool>
+            return new Dictionary<string, bool>
             {
-                MYSQL,
-                PostgreSQL,
-                MongoDB,
-                Redis,
-                NoSQL,
-                Oracle,
-                MSSQL
+                { "MYSQL", MYSQL },
+                { "PostgreSQL", PostgreSQL },
+                { "MongoDB", MongoDB },
+                { "Redis", Redis },
+                { "NoSQL", NoSQL },
+                { "Oracle", Oracle },
+                { "MSSQL", MSSQL }
             };
         }
     }

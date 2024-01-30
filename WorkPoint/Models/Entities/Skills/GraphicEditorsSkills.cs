@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 
 namespace WorkPoint.Models.Entities.Skills
 {
@@ -19,14 +20,14 @@ namespace WorkPoint.Models.Entities.Skills
         [Required]
         public bool Photoshop { get; set; }
 
-        public List<bool> GetSkillsAsList()
+        public Dictionary<string, bool> GetSkillsAsDictionary()
         {
-            return new List<bool>
+            return new Dictionary<string, bool>
             {
-                VSCO,
-                Snapseed,
-                Lightroom,
-                Photoshop
+                { "VSCO", VSCO },
+                { "Snapseed", Snapseed },
+                { "Lightroom", Lightroom },
+                { "Photoshop", Photoshop }
             };
         }
     }

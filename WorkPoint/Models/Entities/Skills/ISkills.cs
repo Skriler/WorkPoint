@@ -7,6 +7,6 @@ namespace WorkPoint.Models.Entities.Skills
         [Key]
         int Id { get; set; }
 
-        List<bool> GetSkillsAsList();
+        Dictionary<string, bool> GetSkillsAsDictionary();
     }
 }

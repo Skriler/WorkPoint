@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 
 namespace WorkPoint.Models.Entities.Skills
 {
@@ -16,13 +17,13 @@ namespace WorkPoint.Models.Entities.Skills
         [Required]
         public bool Linux { get; set; }
 
-        public List<bool> GetSkillsAsList()
+        public Dictionary<string, bool> GetSkillsAsDictionary()
         {
-            return new List<bool>
+            return new Dictionary<string, bool>
             {
-                Windows,
-                Mac,
-                Linux
+                { "Windows", Windows },
+                { "Mac", Mac },
+                { "Linux", Linux }
             };
         }
     }

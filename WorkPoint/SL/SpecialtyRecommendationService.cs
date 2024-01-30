@@ -1,4 +1,6 @@
-﻿using WorkPoint.Models.Entities;
+﻿using NuGet.Packaging;
+using System.Linq;
+using WorkPoint.Models.Entities;
 using WorkPoint.Models.Entities.Skills;
 using WorkPoint.Models.ViewModels;
 
@@ -6,78 +8,126 @@ namespace WorkPoint.SL
 {
     public static class SpecialtyRecommendationService
     {
-        private static readonly float minSimilarityMeasure = 0.6f;
+        private static readonly float minSimilarityMeasure = 0.5f;
 
-        public static List<Speciality> GetRecommendation(UserInfo userInfo, List<Speciality> specialities)
+        public static List<SpecialityRecommendation> GetRecommendation(UserInfo userInfo, List<Speciality> specialities)
         {
-            var suitableSkillsCountBySpeciality = new Dictionary<Speciality, int>();
-            int count;
+            var specialityRecommendations = new List<SpecialityRecommendation>();
+            var suitableSkillsBySpeciality = new Dictionary<Speciality, Dictionary<string, bool>>();
 
             foreach (Speciality speciality in specialities)
             {
-                count = CalculateSuitableSkillsForSpeciality(userInfo, speciality);
-
-                suitableSkillsCountBySpeciality.Add(speciality, count);
+                suitableSkillsBySpeciality.Add(
+                    speciality, 
+                    GetSuitableSkillsForSpeciality(userInfo, speciality)
+                    );
             }
 
-            //TODO return specialities with >= minSimilarityMeasure
-            var sortedSpecialities = suitableSkillsCountBySpeciality
-                .OrderByDescending(pair => pair.Value)
+            SpecialityRecommendation recommendation;
+            foreach (var skills in suitableSkillsBySpeciality)
+            {
+                recommendation = new SpecialityRecommendation();
+
+                recommendation.Speciality = skills.Key;
+                recommendation.SkillsWithUserStatus = skills.Value;
+                recommendation.SimilarityRatio = 
+                    skills.Value.Values.Where(skill => skill).Count() /
+                    (float)skills.Value.Count;
+
+                specialityRecommendations.Add(recommendation);
+            }
+
+            return specialityRecommendations
+                .Where(recommendation => recommendation.SimilarityRatio >= minSimilarityMeasure)
+                .OrderByDescending(recommendation => recommendation.SimilarityRatio)
                 .Take(5)
-                .Select(pair => pair.Key)
                 .ToList();
-
-            return sortedSpecialities;
         }
 
-        private static int CalculateSuitableSkillsForSpeciality(UserInfo userInfo, Speciality speciality)
+        private static Dictionary<string, bool> GetSuitableSkillsForSpeciality(UserInfo userInfo, Speciality speciality)
         {
-            int suitableSkillsCount = 0;
+            Dictionary<string, bool> suitableHardSkills = 
+                GetSuitableHardSkills(userInfo, speciality.RequiredHardSkills);
 
-            suitableSkillsCount += CalculateSuitableHardSkills(userInfo, speciality.RequiredHardSkills);
-            suitableSkillsCount += CalculateSuitableSkills(userInfo.SoftSkills, speciality.RequiredSoftSkills);
+            suitableHardSkills.AddRange(
+                GetSuitableSkills(userInfo.SoftSkills, speciality.RequiredSoftSkills)
+                );
 
-            //TODO refactor
-            if (userInfo.Salary <= speciality.Salary)
-                ++suitableSkillsCount;
+            suitableHardSkills.Add(
+                "Salary",
+                userInfo.Salary <= speciality.Salary
+                );
+            suitableHardSkills.Add(
+                "RequiredExperience",
+                userInfo.Experience >= speciality.RequiredExperience
+                );
 
-            if (userInfo.IsRemote == speciality.IsRemote)
-                ++suitableSkillsCount;
+            if (speciality.IsRemote)
+            {
+                suitableHardSkills.Add(
+                    "IsRemote",
+                    userInfo.IsRemote == speciality.IsRemote
+                    );
+            }
 
-            if (userInfo.HasOfficeInZaporizhzhia == speciality.HasOfficeInZaporizhzhia)
-                ++suitableSkillsCount;
+            if (speciality.HasOfficeInZaporizhzhia)
+            {
+                suitableHardSkills.Add(
+                    "HasOfficeInZaporizhzhia",
+                    userInfo.HasOfficeInZaporizhzhia == speciality.HasOfficeInZaporizhzhia
+                    );
+            }
 
-            if (userInfo.Experience >= speciality.RequiredExperience)
-                ++suitableSkillsCount;
+            if (speciality.IsHighEducationNeeded)
+            {
+                suitableHardSkills.Add(
+                    "HighEducation",
+                    userInfo.HighEducation == speciality.IsHighEducationNeeded
+                    );
+            }
 
-            if (userInfo.HighEducation == speciality.IsHighEducationNeeded)
-                ++suitableSkillsCount;
+            if (speciality.IsB2EnglishLevelNeeded)
+            {
+                suitableHardSkills.Add(
+                    "KnowledgeB2EnglishLevel",
+                    userInfo.KnowledgeB2EnglishLevel == speciality.IsB2EnglishLevelNeeded
+                    );
+            }
 
-            if (userInfo.KnowledgeB2EnglishLevel == speciality.IsB2EnglishLevelNeeded)
-                ++suitableSkillsCount;
-
-            return suitableSkillsCount;
+            return suitableHardSkills;
         }
 
-        private static int CalculateSuitableHardSkills(UserInfo userInfo, HardSkills requiredSkills)
+        private static Dictionary<string, bool> GetSuitableHardSkills(UserInfo userInfo, HardSkills requiredSkills)
         {
+            Dictionary<string, bool> suitableHardSkills = new Dictionary<string, bool>();
+
             var requiredSkillsList = requiredSkills.GetSkillsAsList();
 
-            return requiredSkillsList
-                .Sum(specialtySkills => CalculateSuitableSkills(
-                    userInfo.GetSkillsBySpecialitySkills(specialtySkills), 
-                    specialtySkills
-                    ));
+            foreach (var skills in requiredSkillsList)
+            {
+                suitableHardSkills.AddRange(GetSuitableSkills(userInfo.GetSkillsBySpecialitySkills(skills), skills));
+            }
+
+            return suitableHardSkills;
         }
 
-        private static int CalculateSuitableSkills<TSkills>(TSkills userSkills, TSkills requiredSkills)  where TSkills : ISkills
+        private static Dictionary<string, bool> GetSuitableSkills<TSkills>(TSkills userSkills, TSkills requiredSkills) where TSkills : ISkills
         {
-            var userSkillsList = userSkills.GetSkillsAsList();
-            var specialtySkillsList = requiredSkills.GetSkillsAsList();
+            Dictionary<string, bool> suitableSkills = new Dictionary<string, bool>();
 
-            return userSkillsList
-                .Zip(specialtySkillsList, (userSkill, specialtySkill) => (userSkill, specialtySkill))
-                .Count(pair => pair.specialtySkill && pair.userSkill);
+            var userSkillsDictionary = userSkills.GetSkillsAsDictionary();
+            var specialtySkillsDictionary = requiredSkills.GetSkillsAsDictionary();
+
+
+            foreach (var skill in specialtySkillsDictionary)
+            {
+                if (!skill.Value)
+                    continue;
+
+                suitableSkills.Add(skill.Key, userSkillsDictionary.GetValueOrDefault(skill.Key));
+            }
+
+            return suitableSkills;
         }
     }
 }

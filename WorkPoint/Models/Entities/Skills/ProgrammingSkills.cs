@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 
 namespace WorkPoint.Models.Entities.Skills
 {
@@ -93,37 +94,37 @@ namespace WorkPoint.Models.Entities.Skills
         [Required]
         public bool Multithreading { get; set; }
 
-        public List<bool> GetSkillsAsList()
+        public Dictionary<string, bool> GetSkillsAsDictionary()
         {
-            return new List<bool>
+            return new Dictionary<string, bool>
             {
-                HTML,
-                CSS,
-                Bootstrap,
-                PHP,
-                JS,
-                React,
-                NodeJS,
-                Vue,
-                Vuex,
-                RestAPI,
-                Python,
-                PyTest,
-                Mocha,
-                UnitTesting,
-                TypeScript,
-                CPlusPlus,
-                CSharp,
-                DOTNET,
-                HTTP,
-                Dart,
-                Flutter,
-                Swift,
-                OneC,
-                WordPress,
-                PrinciplesOOP,
-                SolidPrinciples,
-                Multithreading
+                { "HTML", HTML },
+                { "CSS", CSS },
+                { "Bootstrap", Bootstrap },
+                { "PHP", PHP },
+                { "JS", JS },
+                { "React", React },
+                { "NodeJS", NodeJS },
+                { "Vue", Vue },
+                { "Vuex", Vuex },
+                { "REST API", RestAPI },
+                { "Python", Python },
+                { "PyTest", PyTest },
+                { "Mocha", Mocha },
+                { "UnitTesting", UnitTesting },
+                { "TypeScript", TypeScript },
+                { "C++", CPlusPlus },
+                { "C#", CSharp },
+                { "DOTNET", DOTNET },
+                { "HTTP", HTTP },
+                { "Dart", Dart },
+                { "Flutter", Flutter },
+                { "Swift", Swift },
+                { "1C", OneC },
+                { "WordPress", WordPress },
+                { "PrinciplesOOP", PrinciplesOOP },
+                { "SolidPrinciples", SolidPrinciples },
+                { "Multithreading", Multithreading },
             };
         }
     }

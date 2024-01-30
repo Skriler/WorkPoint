@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 
 namespace WorkPoint.Models.Entities.Skills
 {
@@ -31,18 +32,18 @@ namespace WorkPoint.Models.Entities.Skills
         [Required]
         public bool Ahrefs { get; set; }
 
-        public List<bool> GetSkillsAsList()
+        public Dictionary<string, bool> GetSkillsAsDictionary()
         {
-            return new List<bool>
+            return new Dictionary<string, bool>
             {
-                Git,
-                GoogleAnalytics,
-                FacebookAnalytics,
-                NetworkProtocols,
-                ComputerNetworks,
-                MaintainingSoftware,
-                NeatpeakSpider,
-                Ahrefs,
+                { "Git", Git },
+                { "GoogleAnalytics", GoogleAnalytics },
+                { "FacebookAnalytics", FacebookAnalytics },
+                { "NetworkProtocols", NetworkProtocols },
+                { "ComputerNetworks", ComputerNetworks },
+                { "MaintainingSoftware", MaintainingSoftware },
+                { "NeatpeakSpider", NeatpeakSpider },
+                { "Ahrefs", Ahrefs }
             };
         }
     }

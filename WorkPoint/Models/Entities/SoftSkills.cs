@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 using WorkPoint.Models.Entities.Skills;
 
 namespace WorkPoint.Models.Entities
@@ -44,22 +45,22 @@ namespace WorkPoint.Models.Entities
         [Required]
         public bool ContentPromotion { get; set; }
 
-        public List<bool> GetSkillsAsList()
+        public Dictionary<string, bool> GetSkillsAsDictionary()
         {
-            return new List<bool>
+            return new Dictionary<string, bool>
             {
-                Teamwork,
-                Responsibility,
-                Punctuality,
-                Social,
-                Analytical,
-                Business,
-                Attention,
-                Planning,
-                QuickLearner,
-                CriticalThinking,
-                Statistics,
-                ContentPromotion
+                { "Teamwork", Teamwork },
+                { "Responsibility", Responsibility },
+                { "Punctuality", Punctuality },
+                { "Social", Social },
+                { "Analytical", Analytical },
+                { "Business", Business },
+                { "Attention", Attention },
+                { "Planning", Planning },
+                { "QuickLearner", QuickLearner },
+                { "CriticalThinking", CriticalThinking },
+                { "Statistics", Statistics },
+                { "ContentPromotion", ContentPromotion }
             };
         }
     }
