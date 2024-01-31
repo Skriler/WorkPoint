@@ -92,14 +92,23 @@
                     </div>
                     <div class="skills">
                         <div class="row align-items-center justify-content-around" >
-                            <div class="col-3" v-for="(n, m) in q.options">
+                            <div class="col-3" v-for="n in q.options">
                                 <div class="check">
                                     <label>
                                         <div v-if="q.radio_check">
-                                            <input type="radio" :name="q.id" :value="n" v-on:click="temp.push({name: (q.id * 100 + 1), val: n})"><span>{{ n }}</span></input>
+                                            <input type="radio" :name="n.name" :value="n.val" v-on:click="temp.push({name: n.name, val: n.val})"><span>{{ n.val }}</span></input>
                                         </div>
                                         <div v-if="!q.radio_check">
-                                            <input type="checkbox" :name="m" :value="n" v-on:click="temp.push({name: (q.id * 100 + m + 1), val: n})"><span>{{ n }}</span></input>
+                                            <div v-for="j in temp">
+                                                <div v-bind:switch_to="true"></div>
+                                                <div v-if="j.name === n.name">
+                                                    <div v-bind:switch_to="false"></div>
+                                                    <div class="ch" v-on:click="remove(n.name)"><span>{{ n.val }}</span></div>
+                                                </div>
+                                            </div>
+                                            <div v-if="switch_to">
+                                                <div class="unch" v-on:click="temp.push({name: n.name, val: true})"><span>{{ n.val }}</span></div>
+                                            </div>
                                         </div>
                                     </label>
                                 </div>
@@ -133,7 +142,7 @@
                     
         <div v-if="i === 14">
             <form action="result.html" method="post" v-for="(q, k) in quests">
-                <div v-for="(l, j) in temp">
+                <div v-for="l in temp">
                     <input type="hidden" :name="l.name" :value="l.val">
                 </div>
                 <div class="r">
@@ -157,30 +166,94 @@
             data: {
                 i: 1,
                 quests: [
-                    {id: 1, text: "На яку заробітню плату ви розраховуєте(тис.грн)?", radio_check: true, options: ["6+", "10+", "20+", "30+", "50+", "100+"]},
-                    {id: 2, text: "Ви шукаєте роботу дистанційно?", radio_check: true, options: ["Так", "Ні"]},
-                    {id: 3, text: "Офіс повинен знаходитись у Запоріжжі?", radio_check: true, options: ["Так", "Ні"]},
-                    {id: 4, text: "Який у вас досвід роботи?", radio_check: true, options: ["<1", "<2", "<3", "<4", "<5", "5+"]},
-                    {id: 5, text: "Ви маєте вищу освіту?", radio_check: true, options: ["Так", "Ні"]},
-                    {id: 6, text: "Рівень ангійської вище В2?", radio_check: true, options: ["Так", "Ні"]},
-                    {id: 7, text: "Вкажіть ваші непрофесійні навички(Soft skills).", radio_check: false, options: ["Робота в команді", "Відповідальність", "Пунктуальність", "Вміння спілкуватись", "Аналітичний", "Бізнес", "Уважний", "Планування", "Швидко навчаюся", "Критичне мислення", "Статистика", "Просування контенту"]},
-                    {id: 8, text: "Які мови програмування ви знаєте?(частина 1)", radio_check: false, options: [ "HTML", "CSS", "Bootstrap", "PHP", "JS", "React", "NodeJS", "Vue", "Vuex", "RestAPI", "Python", "PyTest", "Mocha", "UnitTesting", "TypeScript"]},
-                    {id: 9, text: "Які мови програмування ви знаєте?(частина 2)", radio_check: false, options: [ "C++","C#",".NET","HTTP","Dart","Flutter","Swift","OneC","WordPress","PrinciplesOOP","SolidPrinciples","Multithreading"]},
-                    {id: 10, text: "Оберіть СУБД які вам знайомі.", radio_check: false, options: ["MYSQL", "PostgreSQL", "MongoDB", "Redis", "NoSQL", "Oracle", "MSSQL"]},
-                    {id: 11, text: "Оберіть програми Microsoft Office, які ви знаєте.", radio_check: false, options: ["Word", "Excel","Access", "Powerpoint"]},
-                    {id: 12, text: "Оберіть операційні системи з якими Ви можете працювати.", radio_check: false, options: ["Windows", "Mac","Linux"]},
-                    {id: 13, text: "Оберіть програми візуалізації.", radio_check: false, options: ["VSCO", "Snapseed","Lightroom","Photoshop"]},
-                    {id: 14, text: "Додаткові навички", radio_check: false, options: ["Git",  "GoogleAnalytics", "FacebookAnalytics", "NetworkProtocols","ComputerNetworks","MaintainingSoftware", "NeatpeakSpider", "Ahrefs"]}
+                    {id: 1, text: "На яку заробітню плату ви розраховуєте(тис.грн)?", radio_check: true, options: [{name: "Salary", val: "6+"}, {name: "Salary", val: "10+"},{name: "Salary", val: "20+"},{name: "Salary", val: "30+"},{name: "Salary", val: "50+"},{name: "Salary", val: "100+"}]},
+                    {id: 2, text: "Ви шукаєте роботу дистанційно?", radio_check: true, options: [{name: "IsRemote", val: "Так"}, {name: "IsRemote", val: "Ні"}]},
+                    {id: 3, text: "Офіс повинен знаходитись у Запоріжжі?", radio_check: true, options: [{name: "HasOfficeInZaporizhzhia", val: "Так"}, {name: "HasOfficeInZaporizhzhia", val: "Ні"}]},
+                    {id: 4, text: "Який у вас досвід роботи?", radio_check: true, options: [{name: "RequiredExperience", val: "<1"}, {name: "RequiredExperience", val: "<2"},{name: "RequiredExperience", val: "<3"},{name: "RequiredExperience", val: "<4"},{name: "RequiredExperience", val: "<5"},{name: "RequiredExperience", val: "5+"}]},
+                    {id: 5, text: "Ви маєте вищу освіту?", radio_check: true, options: [{name: "IsHighEducationNeeded", val: "Так"}, {name: "IsHighEducationNeeded", val: "Ні"}]},
+                    {id: 6, text: "Рівень ангійської вище В2?", radio_check: true, options: [{name: "IsB2EnglishLevelNeeded", val: "Так"}, {name: "IsB2EnglishLevelNeeded", val: "Ні"}]},
+                    {id: 7, text: "Вкажіть ваші непрофесійні навички(Soft skills).", radio_check: false, 
+                    options: [{name: "Teamwork", val: "Робота в команді"},
+                            {name: "Responsibility", val: "Відповідальність"},
+                            {name: "Punctuality", val: "Пунктуальність"},
+                            {name: "Social", val: "Вміння спілкуватись"},
+                            {name: "Analytical", val: "Аналітичний"},
+                            {name: "Business", val: "Бізнес"},
+                            {name: "Attention", val: "Уважний"},
+                            {name: "Planning", val: "Планування"},
+                            {name: "QuickLearner", val: "Швидко навчаюся"}, 
+                            {name: "CriticalThinking", val: "Критичне мислення"}, 
+                            {name: "Statistics", val: "Статистика"}, 
+                            {name: "ContentPromotion", val: "Просування контенту"}]},
+                    {id: 8, text: "Які мови програмування ви знаєте?(частина 1)", radio_check: false, 
+                    options: [ {name: "HTML", val: "HTML"},
+                            {name: "CSS", val: "CSS"},
+                            {name: "Bootstrap", val: "Bootstrap"}, 
+                            {name: "PHP", val: "PHP"}, 
+                            {name: "JS", val: "JS"},
+                            {name: "React", val: "React"},
+                            {name: "NodeJS", val: "NodeJS"}, 
+                            {name: "Vue", val: "Vue"},
+                            {name: "Vuex", val: "Vuex"},
+                            {name: "RestAPI", val: "RestAPI"},
+                            {name: "Python", val: "Python"},
+                            {name: "PyTest", val: "PyTest"},
+                            {name: "Mocha", val: "Mocha"}, 
+                            {name: "UnitTesting", val: "UnitTesting"},
+                            {name: "TypeScript", val: "TypeScript"}]},
+                    {id: 9, text: "Які мови програмування ви знаєте?(частина 2)", radio_check: false, 
+                    options: [ {name: "CPlusPlus", val: "C++"},
+                            {name: "CSharp", val: "C#"},
+                            {name: "DOTNET", val: ".NET"},
+                            {name: "HTTP", val: "HTTP"},
+                            {name: "Dart", val: "Dart"},
+                            {name: "Flutter", val: "Flutter"},
+                            {name: "Swift", val: "Swift"},
+                            {name: "OneC", val: "1C"},
+                            {name: "WordPress", val: "WordPress"},
+                            {name: "PrinciplesOOP", val: "Принципи ООП"},
+                            {name: "SolidPrinciples", val: "SOLID"},
+                            {name: "Multithreading", val: "Многопоточность"}]},
+                    {id: 10, text: "Оберіть СУБД які вам знайомі.", radio_check: false, 
+                    options: [{name: "MYSQL", val: "MYSQL"},
+                            {name: "PostgreSQL", val: "PostgreSQL"},
+                            {name: "CSMongoDBharp", val: "MongoDB"},
+                            {name: "Redis", val: "Redis"},
+                            {name: "NoSQL", val: "NoSQL"},
+                            {name: "Oracle", val: "Oracle"},
+                            {name: "MSSQL", val: "MSSQL"},]},
+                    {id: 11, text: "Оберіть програми Microsoft Office, які ви знаєте.", radio_check: false, 
+                    options: [{name: "Word", val: "Word"},
+                            {name: "Excel", val: "Excel"},
+                            {name: "Access", val: "Access"},
+                            {name: "Powerpoint", val: "Powerpoint"}]},
+                    {id: 12, text: "Оберіть операційні системи з якими Ви можете працювати.", radio_check: false, 
+                    options: [{name: "Windows", val: "Windows"}, 
+                            {name: "Mac", val: "Mac"},
+                            {name: "Linux", val: "Linux"}]},
+                    {id: 13, text: "Оберіть програми візуалізації.", radio_check: false, 
+                    options: [{name: "VSCO", val: "VSCO"},
+                            {name: "Snapseed", val: "Snapseed"},
+                            {name: "Lightroom", val: "Lightroom"},
+                            {name: "Photoshop", val: "Photoshop"}]},
+                    {id: 14, text: "Додаткові навички", radio_check: false, 
+                    options: [{name: "Git", val: "Git"},
+                            {name: "GoogleAnalytics", val: "GoogleAnalytics"},
+                            {name: "FacebookAnalytics", val: "FacebookAnalytics"},
+                            {name: "NetworkProtocols", val: "NetworkProtocols"},
+                            {name: "ComputerNetworks", val: "ComputerNetworks"},
+                            {name: "MaintainingSoftware", val: "MaintainingSoftware"},
+                            {name: "NeatpeakSpider", val: "NeatpeakSpider"},
+                            {name: "Ahrefs", val: "Snapseed"}]}
                 ],
                 temp: [],
+                switch_to: true,
+                remove(name){
+                    this.temp = this.temp.filter(temp => temp.name != name)
+
+                }
             },
-            computed: {
-                currentTabComponent: function() {
-                    if(i === 15){
-                        document.addEventListener("load", function() {
-                        document.querySelector("form").submit();
-                    });}
-                }}
+            
         });
 
     </script>
