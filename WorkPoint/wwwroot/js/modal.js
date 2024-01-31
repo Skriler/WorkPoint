@@ -1,17 +1,24 @@
-﻿Vue.component("modal", {
-    template: "#modal-template"
+Vue.component("modal", {
+  template: "#modal-template"
 });
 
 new Vue({
-    el: "#how_it_works",
-    data: {
-        showModal: false
-    }
+  el: "#how_it_works",
+  data: {
+    showModal: false
+  }
 });
 
 new Vue({
-    el: "#about_us",
-    data: {
-        showModal: false
-    }
+  el: "#spec",
+  data: {
+    showModal: false
+  }
+});
+
+new Vue({
+  el: "#about_us",
+  data: {
+    showModal: false
+  }
 });
