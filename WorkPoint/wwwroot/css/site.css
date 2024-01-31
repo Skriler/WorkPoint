@@ -353,3 +353,18 @@
     color: #000000;
     background-color: #FFFFFF;
 }
+
+.check .ch{
+    color: #000000;
+    background-color: #FFFFFF;
+}
+
+.check .unch{
+    background-color: transparent;
+    color: #fff;
+}
+
+.check .unch:hover{
+    color: #000000;
+    background-color: #FFFFFF;
+}
