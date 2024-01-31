@@ -9,7 +9,7 @@
     background-size: cover;
 }
 
-.body_rect {
+.body_rect{
     position: absolute;
     left: 0px;
     right: 0px;
@@ -18,7 +18,7 @@
     background: rgba(0, 0, 0, 0.9);
 }
 
-.home {
+.home{
     position: absolute;
     width: 200px;
     height: 84px;
@@ -26,7 +26,7 @@
     top: 0px;
 }
 
-.rect {
+.rect{
     position: absolute;
     width: 100px;
     height: 84px;
@@ -34,12 +34,12 @@
     text-align: center;
 }
 
-.rect a {
+.rect a{
     top: 40px;
     color: #000000;
 }
 
-.txt {
+.txt{
     text-decoration: none;
     position: relative;
     top: 40px;
@@ -52,7 +52,7 @@
     color: #FFFFFF;
 }
 
-.rect_2 {
+.rect_2{
     text-decoration: none;
     box-sizing: border-box;
     position: absolute;
@@ -66,7 +66,7 @@
     border-radius: 25px;
 }
 
-.rect_3 {
+.rect_3{
     text-decoration: none;
     box-sizing: border-box;
     position: absolute;
@@ -78,23 +78,23 @@
     background-color: transparent;
 }
 
-.l .rect_3 {
+.l .rect_3{
     transform: translate(-250%, -50%);
     border: 3px solid #FFFFFF;
     border-radius: 25px;
 }
 
-.r .rect_3 {
+.r .rect_3{
     transform: translate(150%, -50%);
     border: 3px solid #FFFFFF;
     border-radius: 25px;
 }
 
 .rect_2:hover, .rect_3:hover {
-    background: #FFFFFF;
+	background: #FFFFFF;   
 }
 
-.rect_2 .txt {
+.rect_2 .txt{
     width: 285px;
     height: 94px;
     top: 0px;
@@ -103,17 +103,17 @@
     line-height: 44px;
 }
 
-.rect_2 .txt p {
+.rect_2 .txt p{
     position: absolute;
     left: 65px;
     top: 20px;
 }
 
 .rect_2 .txt:hover {
-    color: #000000;
+	color: #000000;
 }
 
-.rect_3 .txt {
+.rect_3 .txt{
     width: 140px;
     height: 94px;
     top: 0px;
@@ -122,28 +122,28 @@
     line-height: 44px;
 }
 
-.l .rect_3 .txt p {
+.l .rect_3 .txt p{
     position: absolute;
     left: 25px;
     top: 20px;
 }
 
-.r .rect_3 .txt p {
+.r .rect_3 .txt p{
     position: absolute;
     left: 35px;
     top: 20px;
 }
 
-.rect_3 .txt:hover {
+.rect_3 .txt:hover{
     color: #000000;
 }
 
-.how {
+.how{
     position: absolute;
     right: 25%;
 }
 
-.main_head {
+.main_head{
     position: absolute;
     width: 1200px;
     left: 50%;
@@ -152,7 +152,7 @@
     top: 25%;
 }
 
-.main_head .txt {
+.main_head .txt{
     position: absolute;
     left: 50%;
     margin-right: -50%;
@@ -161,13 +161,13 @@
     letter-spacing: 0.33em;
 }
 
-.main_head .txt p {
+.main_head .txt .spec{
     width: 1200px;
     font-size: 30px;
     letter-spacing: 0;
 }
 
-.main_head .txt .mhd {
+.main_head .txt .mhd{
     top: 0px;
     width: 160px;
     font-weight: 400;
@@ -176,26 +176,27 @@
     text-align: right;
 }
 
-.main_head .txt .mhd .l {
+.main_head .txt .mhd .l{
     transform: translate(-50%, -50%);
 }
 
-.main_head .txt .mhd .r {
+.main_head .txt .mhd .r{
     transform: translate(-10%, -50%);
 }
 
-.eclipse {
+.eclipse{
     position: absolute;
     width: 40px;
     height: 40px;
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
+    
     border-radius: 50%;
     background: #FFFFFF;
 }
 
-.lists {
+.lists{
     position: absolute;
     top: 700px;
     left: 50%;
@@ -204,31 +205,27 @@
 }
 
 @media screen and (max-width: 1000px) {
-    .home {
+    .home{
         left: 10%;
     }
-
-    .how {
+    .how{
         right: 10%;
     }
-
-    .main_head .txt p {
+    .main_head .txt p{
         width: 600px;
         font-size: 30px;
         letter-spacing: 0;
     }
-
-    .l .rect_3 {
+    .l .rect_3{
         transform: translate(0%, -50%);
     }
-
-    .r .rect_3 {
+    .r .rect_3{
         transform: translate(-100%, -50%);
     }
 }
 
 @media screen and (max-width: 700px) {
-    .main_head .txt p {
+    .main_head .txt p{
         width: 400px;
         font-size: 30px;
         letter-spacing: 0;
@@ -250,12 +247,12 @@
     display: table;
     transition: opacity 0.3s ease;
 }
-
+  
 .modal-wrapper {
     display: table-cell;
     vertical-align: middle;
 }
-
+  
 .modal-container {
     width: 50%;
     margin: 0px auto;
@@ -266,23 +263,23 @@
     transition: all 0.3s ease;
     font-family: Helvetica;
 }
-
+  
 .modal-header h3 {
     margin-top: 0;
     color: #FFFFFF;
 }
-
+  
 .modal-body {
     font-weight: 400;
     font-size: 24px;
     color: #000000;
     margin: 20px 0;
 }
-
+  
 .modal-enter {
     opacity: 0;
 }
-
+  
 .modal-leave-active {
     opacity: 0;
 }
@@ -301,13 +298,13 @@
     transform: scale(1.1);
 }
 
-.skills {
-    position: absolute;
+.skills{
+    position:absolute;
     top: 120px;
     width: 1200px;
 }
 
-.check {
+.check{
     border-radius: 30px;
     width: 250px;
     border: 1px solid #fff;
@@ -315,14 +312,14 @@
     margin: 15px 30px 15px 30px;
 }
 
-.check label {
+.check label{
     border-radius: 30px;
     vertical-align: middle;
     width: 250px;
     height: 70px;
 }
 
-.check label span {
+.check label span{
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
@@ -340,9 +337,7 @@
     color: #fff !important;
 }
 
-.check label input + span {
-    color: #fff;
-}
+.check label input + span{color: #fff;}
 
 .check input:checked + span {
     color: #000000;
