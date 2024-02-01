@@ -2,59 +2,52 @@
     ViewData["Title"] = "Questions Page";
 }
 
-<div id="app">
-    <div v-for="(q, k) in quests">
-        <div v-if="q.id === i">
-            <div class="main_head">
-                <div class="txt">
-                    <p>Питання {{ q.id }}:</p>
-                    <p>{{ q.text }}</p>
-                </div>
-                <div class="skills">
-                    <div class="row align-items-center justify-content-around">
-                        <div class="col-3" v-for="n in q.options">
-                            <div class="check">
-                                <label>
-                                    <div v-if="q.radio_check">
-                                        <input type="radio" :name="n.name" :value="n.val" v-on:click="temp.push({name: n.name, val: n.val})"><span>{{ n.val }}</span></input>
-                                    </div>
-                                    <div v-if="!q.radio_check">
-                                        <div v-for="j in temp">
-                                            <div v-bind:switch_to="true"></div>
-                                            <div v-if="j.name === n.name">
-                                                <div v-bind:switch_to="false"></div>
-                                                <div class="ch" v-on:click="remove(n.name)"><span>{{ n.val }}</span></div>
-                                            </div>
-                                        </div>
-                                        <div v-if="switch_to">
-                                            <div class="unch" v-on:click="temp.push({name: n.name, val: true})"><span>{{ n.val }}</span></div>
+<div id="app" class="main_head">
+    <div v-for="q in quests">
+        <div v-if="q.id === i" class="txt">
+            <div>
+                <p>Питання {{ q.id }}:</p>
+                <p>{{ q.text }}</p>
+            </div>
+            <div class="skills">
+                <div class="row justify-content-around">
+                    <div class="col-3" v-for="n in q.options">
+                        <div class="check">
+                            <label>
+                                <div v-if="q.radio_check">
+                                    <input type="radio" :name="n.name" :value="n.val" v-on:click="temp.push({name: n.name, val: n.val})"><span>{{ n.val }}</span></input>
+                                </div>
+                                <div v-if="!q.radio_check">
+                                    <div v-for="j in temp">
+                                        <div v-bind:switch_to="true"></div>
+                                        <div v-if="j.name === n.name">
+                                            <div v-bind:switch_to="false"></div>
+                                            <div class="ch" v-on:click="remove(n.name)"><span>{{ n.val }}</span></div>
                                         </div>
                                     </div>
-                                </label>
-                            </div>
+                                    <div v-if="switch_to">
+                                        <div class="unch" v-on:click="temp.push({name: n.name, val: true})"><span>{{ n.val }}</span></div>
+                                    </div>
+                                </div>
+                            </label>
                         </div>
                     </div>
                 </div>
             </div>
-            <div v-if="i === 1" class="l">
-                <a type="button" asp-controller="Home" asp-action="Index" class="rect_3">
-                    <div class="txt">
-                        <p>Назад</p>
-                    </div>
-                </a>
-            </div>
+        </div>
+        <div v-if="i === 1" class="l">
+            <a type="button" asp-controller="Home" asp-action="Index" class="rect_2">
+                <div class="txt">Назад</div>
+            </a>
+        </div>
             <div v-else class="l">
-                <button v-on:click="i--" class="rect_3">
-                    <div class="txt">
-                        <p>Назад</p>
-                    </div>
+                <button v-on:click="i--" class="rect_2">
+                    <div class="txt">Назад</div>
                 </button>
             </div>
             <div v-if="!(i === 14)" class="r">
-                <button type="button" v-on:click="i++" class="rect_3">
-                    <div class="txt">
-                        <p>Далі</p>
-                    </div>
+                <button type="button" v-on:click="i++" class="rect_2">
+                    <div class="txt">Далі</div>
                 </button>
             </div>
         </div>
@@ -65,10 +58,8 @@
                 <input type="hidden" :name="l.name" :value="l.val">
             </div>
             <div class="r">
-                <button type="submit" class="rect_3">
-                    <div class="txt">
-                        <p>Далі</p>
-                    </div>
+                <button type="submit" class="rect_2">
+                    <div class="txt">Далі</div>
                 </button>
             </div>
         </form>
