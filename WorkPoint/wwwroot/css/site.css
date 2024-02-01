@@ -359,3 +359,15 @@ button .txt{
 #app.main_head .rect_2{
     top: 60vh;
 }
+
+.txt .mar {
+    text-align: left;
+}
+
+.txt .mar:hover {
+    text-decoration-line: underline;
+}
+
+a{
+    text-decoration: none !important;
+}
