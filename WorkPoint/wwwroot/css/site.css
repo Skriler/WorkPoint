@@ -8,6 +8,7 @@
     -o-background-size: cover;
     background-size: cover;
     justify-content: center;
+    display: flex;
 }
 
 .body_rect {
@@ -35,7 +36,6 @@ button {
     width: 100px;
     height: 84px;
     background: #FFFFFF;
-    text-align: center;
 }
 
 .txt {
@@ -46,100 +46,60 @@ button {
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
-    line-height: 24px;
     color: #FFFFFF;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
 }
 
 .rect .txt {
     color: #000000;
-    top: 40px;
-}
-
-.txt .up {
-    position: relative;
-    top: 40px;
 }
 
 .rect_2 {
-    text-decoration: none;
     box-sizing: border-box;
     position: absolute;
     width: 285px;
     height: 94px;
-    top: 85vh;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
+    top: 75vh;
     border: 3px solid #FFFFFF;
     border-radius: 25px;
 }
 
-.rect_3 {
+.l .rect_2 {
     text-decoration: none;
-    box-sizing: border-box;
-    position: absolute;
     width: 140px;
-    height: 94px;
-    top: 85vh;
-    left: 50%;
-    margin-right: -50%;
     background-color: transparent;
-    border: 3px solid #FFFFFF;
-    border-radius: 25px;
+    margin-left: 20vw;
 }
 
-.l .rect_3 {
-    transform: translate(-250%, -50%);
+.r .rect_2 {
+    text-decoration: none;
+    width: 140px;
+    background-color: transparent;
+    margin-left: 70vw;
 }
 
-.r .rect_3 {
-    transform: translate(150%, -50%);
-}
-
-.rect_2:hover, .rect_3:hover {
+.rect_2:hover {
     background: #FFFFFF;
 }
 
 .rect_2 .txt {
-    width: 285px;
     font-size: 36px;
-}
-
-a .rect_2 {
-    top: 30px;
 }
 
 .rect_2 .txt:hover {
     color: #000000;
 }
 
-.rect_3 .txt {
-    width: 140px;
-    height: 94px;
-    font-size: 36px;
-    line-height: 44px;
-}
-
-.rect_3 p {
-    position: absolute;
-    top: 20px;
-}
-
-.l .rect_3 p {
-    left: 20px;
-}
-
-.r .rect_3 p {
-    left: 30px;
-}
-
-.rect_3 .txt:hover {
-    color: #000000;
-}
-
 .how {
     position: absolute;
-    right: 25vw;
+    width: 200px;
+    height: 84px;
+    right: 20vw;
 }
 
 .main_head {
@@ -149,56 +109,28 @@ a .rect_2 {
 }
 
 .main_head .txt {
-    position: absolute;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -120%);
     letter-spacing: 0.33em;
 }
 
 .main_head .txt p {
-    width: 1200px;
+    width: 80vw;
     font-size: 30px;
     letter-spacing: 0;
 }
 
 .main_head .txt .mhd {
-    width: 160px;
+    display: flex;
+    justify-content: center;
+    margin: 15px 0px;
     font-size: 36px;
-    line-height: 44px;
     text-align: right;
 }
 
-.mhd .l {
-    transform: translate(-50%, -50%);
-}
-
-.mhd .r {
-    transform: translate(-10%, -50%);
-}
-
 .eclipse {
-    position: absolute;
     width: 40px;
     height: 40px;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
     border-radius: 50%;
     background: #FFFFFF;
-}
-
-.lists {
-    position: absolute;
-    top: 600px;
-}
-
-.lists .txt .mar {
-    text-align: left;
-}
-
-.lists .txt .mar:hover {
-    text-decoration-line: underline;
 }
 
 @media screen and (max-width: 1000px) {
@@ -208,26 +140,6 @@ a .rect_2 {
 
     .how {
         right: 10vw;
-    }
-
-    .main_head .txt p {
-        width: 600px;
-        font-size: 30px;
-        letter-spacing: 0;
-    }
-
-    .l .rect_3 {
-        transform: translate(-100%, -50%);
-    }
-
-    .r .rect_3 {
-        transform: translate(0%, -50%);
-    }
-}
-
-@media screen and (max-width: 700px) {
-    .main_head .txt p {
-        width: 400px;
     }
 }
 
@@ -254,6 +166,9 @@ a .rect_2 {
 
 .modal-container {
     width: 50vw;
+    position: absolute;
+    left: 25vw;
+    top: 10vw;
     margin: auto;
     padding: 20px 30px;
     background-color: gray;
@@ -264,10 +179,12 @@ a .rect_2 {
 }
 
 .modal-header {
-    justify-content: space-around !important;
+    display: block !important;
 }
 
 .modal-header h3 {
+    display: flex;
+    justify-content: center;
     color: #FFFFFF;
 }
 
@@ -285,8 +202,13 @@ a .rect_2 {
     opacity: 0;
 }
 
+.modal-footer{
+    justify-content: center !important;
+}
+
 .modal-footer .rect_2 {
     background-color: #000000;
+    top: 59vh;
 }
 
 .modal-footer .rect_2:hover {
@@ -300,27 +222,23 @@ a .rect_2 {
 }
 
 .skills {
-    position: absolute;
     margin-top: 50px;
     width: 70vw;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, 0%);
 }
 
 .check {
     border-radius: 30px;
-    width: 250px;
+    width: 17vw;
     border: 1px solid #fff;
     overflow: hidden;
-    margin: 15px 30px 15px 30px;
+    margin: 15px;
 }
 
 .check label {
     border-radius: 30px;
-    vertical-align: middle;
-    width: 250px;
+    width:  17vw;
     height: 60px;
+    letter-spacing: 0;
 }
 
 .check label span {
@@ -399,16 +317,16 @@ a .rect_2 {
 }
 
 .mar {
-    margin-top: 50px;
-    margin-bottom: 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     font-size: 32px;
 }
 
 .rect6 .line3 {
     position: relative;
     top: 18px;
-    left: 6px;
-    width: 25.46px;
+    left: 4px;
+    width: 30px;
     height: 0px;
     border: 2px solid #FFFFFF;
     transform: rotate(45deg);
@@ -416,20 +334,28 @@ a .rect_2 {
 
 .rect6 .line4 {
     position: relative;
-    top: 16px;
-    left: 6px;
-    width: 25.46px;
+    top: 14px;
+    left: 4px;
+    width: 30px;
     height: 0px;
     border: 2px solid #FFFFFF;
     transform: rotate(-45deg);
-}
-
-.lists .modal-mask {
-    transform: translate(-26.5%, -36.5%);
 }
 
 .scrolls {
     height: 40vh;
     overflow-y: scroll;
     overflow-x: hidden;
+}
+
+button .txt{
+    letter-spacing: 0em !important;
+}
+
+#app.main_head, #spec.main_head{
+    top: 15vh !important;
+}
+
+#app.main_head .rect_2{
+    top: 60vh;
 }
