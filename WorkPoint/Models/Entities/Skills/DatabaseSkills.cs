@@ -2,11 +2,8 @@
 
 namespace WorkPoint.Models.Entities.Skills
 {
-    public class DatabaseSkills : ISkills
+    public class DatabaseSkills : SomeSkills
     {
-        [Key]
-        public int Id { get; set; }
-
         [Required]
         public bool MYSQL { get; set; }
 
@@ -27,19 +24,5 @@ namespace WorkPoint.Models.Entities.Skills
 
         [Required]
         public bool MSSQL { get; set; }
-
-        public Dictionary<string, bool> GetSkillsAsDictionary()
-        {
-            return new Dictionary<string, bool>
-            {
-                { "MYSQL", MYSQL },
-                { "PostgreSQL", PostgreSQL },
-                { "MongoDB", MongoDB },
-                { "Redis", Redis },
-                { "NoSQL", NoSQL },
-                { "Oracle", Oracle },
-                { "MSSQL", MSSQL }
-            };
-        }
     }
 }

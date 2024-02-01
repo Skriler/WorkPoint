@@ -12,7 +12,11 @@ new Vue({
 new Vue({
   el: "#spec",
   data: {
-    showModal: false
+    showModal0: false,
+    showModal1: false,
+    showModal2: false,
+    showModal3: false,
+    showModal4: false
   }
 });
 

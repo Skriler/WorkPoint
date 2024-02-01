@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using WorkPoint.Models;
-using WorkPoint.Models.ViewModels;
 using WorkPoint.SL;
 using WorkPoint.SL.DAL;
 
@@ -25,11 +24,27 @@ namespace WorkPoint.Controllers
         }
 
         [HttpGet]
+        public ViewResult Questions()
+        {
+            return View();
+        }
+
+        [HttpPost]
         public async Task<ViewResult> Recommendations()
         {
             var specialities = await specialityRepository.GetSpecialityListAsync();
+            var userSkills = HttpContext.Request.Form
+                .ToDictionary(kv => kv.Key, kv => kv.Value.ToString());
 
-            var recommendations = SpecialtyRecommendationService.GetRecommendation(new UserInfo(), specialities);
+            var recommendations = SpecialtyRecommendationService.GetRecommendation(
+                UserInfoParser.Parse(userSkills), 
+                specialities
+                );
+
+            foreach (var recommendation in recommendations)
+            {
+                recommendation.SkillsWithUserStatus = LocalizationService.GetLocalizedUkrainianDictionary(recommendation.SkillsWithUserStatus);
+            }
 
             return View(recommendations);
         }

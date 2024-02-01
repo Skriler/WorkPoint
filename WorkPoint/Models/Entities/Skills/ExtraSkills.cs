@@ -1,13 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Diagnostics;
 
 namespace WorkPoint.Models.Entities.Skills
 {
-    public class ExtraSkills : ISkills
+    public class ExtraSkills : SomeSkills
     {
-        [Key]
-        public int Id { get; set; }
-
         [Required]
         public bool Git { get; set; }
 
@@ -31,20 +27,5 @@ namespace WorkPoint.Models.Entities.Skills
 
         [Required]
         public bool Ahrefs { get; set; }
-
-        public Dictionary<string, bool> GetSkillsAsDictionary()
-        {
-            return new Dictionary<string, bool>
-            {
-                { "Git", Git },
-                { "GoogleAnalytics", GoogleAnalytics },
-                { "FacebookAnalytics", FacebookAnalytics },
-                { "NetworkProtocols", NetworkProtocols },
-                { "ComputerNetworks", ComputerNetworks },
-                { "MaintainingSoftware", MaintainingSoftware },
-                { "NeatpeakSpider", NeatpeakSpider },
-                { "Ahrefs", Ahrefs }
-            };
-        }
     }
 }

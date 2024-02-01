@@ -1,13 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Diagnostics;
 
 namespace WorkPoint.Models.Entities.Skills
 {
-    public class ProgrammingSkills : ISkills
+    public class ProgrammingSkills : SomeSkills
     {
-        [Key]
-        public int Id { get; set; }
-
         [Required]
         public bool HTML { get; set; }
 
@@ -93,39 +89,5 @@ namespace WorkPoint.Models.Entities.Skills
 
         [Required]
         public bool Multithreading { get; set; }
-
-        public Dictionary<string, bool> GetSkillsAsDictionary()
-        {
-            return new Dictionary<string, bool>
-            {
-                { "HTML", HTML },
-                { "CSS", CSS },
-                { "Bootstrap", Bootstrap },
-                { "PHP", PHP },
-                { "JS", JS },
-                { "React", React },
-                { "NodeJS", NodeJS },
-                { "Vue", Vue },
-                { "Vuex", Vuex },
-                { "REST API", RestAPI },
-                { "Python", Python },
-                { "PyTest", PyTest },
-                { "Mocha", Mocha },
-                { "UnitTesting", UnitTesting },
-                { "TypeScript", TypeScript },
-                { "C++", CPlusPlus },
-                { "C#", CSharp },
-                { "DOTNET", DOTNET },
-                { "HTTP", HTTP },
-                { "Dart", Dart },
-                { "Flutter", Flutter },
-                { "Swift", Swift },
-                { "1C", OneC },
-                { "WordPress", WordPress },
-                { "PrinciplesOOP", PrinciplesOOP },
-                { "SolidPrinciples", SolidPrinciples },
-                { "Multithreading", Multithreading },
-            };
-        }
     }
 }

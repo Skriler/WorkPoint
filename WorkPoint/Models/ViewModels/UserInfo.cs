@@ -22,38 +22,11 @@ namespace WorkPoint.Models.ViewModels
 
         public UserInfo()
         {
-            Salary = 15000;
-            IsRemote = true;
-            HasOfficeInZaporizhzhia = true;
-            Experience = 2;
-            HighEducation = true;
-            KnowledgeB2EnglishLevel = true;
-
-            SoftSkills = new SoftSkills()
-            {
-                Teamwork = true
-            };
-
-            HardSkills = new HardSkills()
-            {
-                ProgrammingSkills = new ProgrammingSkills()
-                {
-                    CSharp = true,
-                    DOTNET = true,
-                    HTTP = true
-                },
-                DBSkills = new DatabaseSkills()
-                {
-                    MSSQL = true,
-                },
-                MSOfficeSkills = new MicrosoftOfficeSkills(),
-                OSSkills = new OperatingSystemSkills(),
-                GESkills = new GraphicEditorsSkills(),
-                ExtraSkills = new ExtraSkills()
-            };
+            SoftSkills = new SoftSkills();
+            HardSkills = new HardSkills();
         }
 
-        public ISkills GetSkillsBySpecialitySkills(ISkills specialitySkills)
+        public SomeSkills GetSkillsBySpecialitySkills(SomeSkills specialitySkills)
         {
             return specialitySkills switch
             {

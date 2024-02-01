@@ -7,42 +7,40 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    justify-content: center;
 }
 
-.body_rect{
+.body_rect {
     position: absolute;
-    left: 0px;
-    right: 0px;
-    top: 0px;
-    bottom: 0px;
+    width: 100vw;
+    height: 100vh;
     background: rgba(0, 0, 0, 0.9);
 }
 
-.home{
+button {
+    background-color: transparent;
+}
+
+/* header */
+
+.home {
     position: absolute;
     width: 200px;
     height: 84px;
-    left: 25%;
-    top: 0px;
+    left: 25vw;
 }
 
-.rect{
-    position: absolute;
+.rect {
+    position: relative;
     width: 100px;
     height: 84px;
     background: #FFFFFF;
     text-align: center;
 }
 
-.rect a{
-    top: 40px;
-    color: #000000;
-}
-
-.txt{
+.txt {
     text-decoration: none;
     position: relative;
-    top: 40px;
     text-align: center;
     font-family: 'Inter';
     font-style: normal;
@@ -52,13 +50,23 @@
     color: #FFFFFF;
 }
 
-.rect_2{
+.rect .txt {
+    color: #000000;
+    top: 40px;
+}
+
+.txt .up {
+    position: relative;
+    top: 40px;
+}
+
+.rect_2 {
     text-decoration: none;
     box-sizing: border-box;
     position: absolute;
     width: 285px;
     height: 94px;
-    top: 85%;
+    top: 85vh;
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
@@ -66,169 +74,160 @@
     border-radius: 25px;
 }
 
-.rect_3{
+.rect_3 {
     text-decoration: none;
     box-sizing: border-box;
     position: absolute;
     width: 140px;
     height: 94px;
-    top: 85%;
+    top: 85vh;
     left: 50%;
     margin-right: -50%;
     background-color: transparent;
+    border: 3px solid #FFFFFF;
+    border-radius: 25px;
 }
 
-.l .rect_3{
+.l .rect_3 {
     transform: translate(-250%, -50%);
-    border: 3px solid #FFFFFF;
-    border-radius: 25px;
 }
 
-.r .rect_3{
+.r .rect_3 {
     transform: translate(150%, -50%);
-    border: 3px solid #FFFFFF;
-    border-radius: 25px;
 }
 
 .rect_2:hover, .rect_3:hover {
-	background: #FFFFFF;   
+    background: #FFFFFF;
 }
 
-.rect_2 .txt{
+.rect_2 .txt {
     width: 285px;
-    height: 94px;
-    top: 0px;
-    font-weight: 400;
     font-size: 36px;
-    line-height: 44px;
 }
 
-.rect_2 .txt p{
-    position: absolute;
-    left: 65px;
-    top: 20px;
+a .rect_2 {
+    top: 30px;
 }
 
 .rect_2 .txt:hover {
-	color: #000000;
+    color: #000000;
 }
 
-.rect_3 .txt{
+.rect_3 .txt {
     width: 140px;
     height: 94px;
-    top: 0px;
-    font-weight: 400;
     font-size: 36px;
     line-height: 44px;
 }
 
-.l .rect_3 .txt p{
+.rect_3 p {
     position: absolute;
-    left: 25px;
     top: 20px;
 }
 
-.r .rect_3 .txt p{
-    position: absolute;
-    left: 35px;
-    top: 20px;
+.l .rect_3 p {
+    left: 20px;
 }
 
-.rect_3 .txt:hover{
+.r .rect_3 p {
+    left: 30px;
+}
+
+.rect_3 .txt:hover {
     color: #000000;
 }
 
-.how{
+.how {
     position: absolute;
-    right: 25%;
+    right: 25vw;
 }
 
-.main_head{
+.main_head {
     position: absolute;
-    width: 1200px;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
-    top: 25%;
+    width: 100vw;
+    top: 27vh;
 }
 
-.main_head .txt{
+.main_head .txt {
     position: absolute;
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -120%);
-    top: 70px;
     letter-spacing: 0.33em;
 }
 
-.main_head .txt .spec{
+.main_head .txt p {
     width: 1200px;
     font-size: 30px;
     letter-spacing: 0;
 }
 
-.main_head .txt .mhd{
-    top: 0px;
+.main_head .txt .mhd {
     width: 160px;
-    font-weight: 400;
     font-size: 36px;
     line-height: 44px;
     text-align: right;
 }
 
-.main_head .txt .mhd .l{
+.mhd .l {
     transform: translate(-50%, -50%);
 }
 
-.main_head .txt .mhd .r{
+.mhd .r {
     transform: translate(-10%, -50%);
 }
 
-.eclipse{
+.eclipse {
     position: absolute;
     width: 40px;
     height: 40px;
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
-    
     border-radius: 50%;
     background: #FFFFFF;
 }
 
-.lists{
+.lists {
     position: absolute;
-    top: 700px;
-    left: 50%;
-    margin-right: -50%;
-    translate: (-150%, 0%);
+    top: 600px;
+}
+
+.lists .txt .mar {
+    text-align: left;
+}
+
+.lists .txt .mar:hover {
+    text-decoration-line: underline;
 }
 
 @media screen and (max-width: 1000px) {
-    .home{
-        left: 10%;
+    .home {
+        left: 10vw;
     }
-    .how{
-        right: 10%;
+
+    .how {
+        right: 10vw;
     }
-    .main_head .txt p{
+
+    .main_head .txt p {
         width: 600px;
         font-size: 30px;
         letter-spacing: 0;
     }
-    .l .rect_3{
-        transform: translate(0%, -50%);
-    }
-    .r .rect_3{
+
+    .l .rect_3 {
         transform: translate(-100%, -50%);
+    }
+
+    .r .rect_3 {
+        transform: translate(0%, -50%);
     }
 }
 
 @media screen and (max-width: 700px) {
-    .main_head .txt p{
+    .main_head .txt p {
         width: 400px;
-        font-size: 30px;
-        letter-spacing: 0;
     }
 }
 
@@ -241,21 +240,21 @@
     bottom: 0;
     left: 0;
     right: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     background-color: rgba(0, 0, 0, 0.5);
     display: table;
     transition: opacity 0.3s ease;
 }
-  
+
 .modal-wrapper {
     display: table-cell;
     vertical-align: middle;
 }
-  
+
 .modal-container {
-    width: 50%;
-    margin: 0px auto;
+    width: 50vw;
+    margin: auto;
     padding: 20px 30px;
     background-color: gray;
     border-radius: 25px;
@@ -263,23 +262,25 @@
     transition: all 0.3s ease;
     font-family: Helvetica;
 }
-  
+
+.modal-header {
+    justify-content: space-around !important;
+}
+
 .modal-header h3 {
-    margin-top: 0;
     color: #FFFFFF;
 }
-  
+
 .modal-body {
-    font-weight: 400;
     font-size: 24px;
     color: #000000;
     margin: 20px 0;
 }
-  
+
 .modal-enter {
     opacity: 0;
 }
-  
+
 .modal-leave-active {
     opacity: 0;
 }
@@ -298,13 +299,16 @@
     transform: scale(1.1);
 }
 
-.skills{
-    position:absolute;
-    top: 120px;
-    width: 1200px;
+.skills {
+    position: absolute;
+    margin-top: 50px;
+    width: 70vw;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, 0%);
 }
 
-.check{
+.check {
     border-radius: 30px;
     width: 250px;
     border: 1px solid #fff;
@@ -312,19 +316,19 @@
     margin: 15px 30px 15px 30px;
 }
 
-.check label{
+.check label {
     border-radius: 30px;
     vertical-align: middle;
     width: 250px;
-    height: 70px;
+    height: 60px;
 }
 
-.check label span{
+.check label span {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
     font-size: 24px;
-    height: 70px;
+    height: 60px;
     align-items: center;
     justify-content: center;
     padding: 3px 0;
@@ -337,7 +341,9 @@
     color: #fff !important;
 }
 
-.check label input + span{color: #fff;}
+.check label input + span {
+    color: #fff;
+}
 
 .check input:checked + span {
     color: #000000;
@@ -349,17 +355,81 @@
     background-color: #FFFFFF;
 }
 
-.check .ch{
+.check .ch {
     color: #000000;
     background-color: #FFFFFF;
 }
 
-.check .unch{
+.check .unch {
     background-color: transparent;
     color: #fff;
 }
 
-.check .unch:hover{
+.check .unch:hover {
     color: #000000;
     background-color: #FFFFFF;
+}
+
+.rect6 {
+    box-sizing: border-box;
+    width: 40px;
+    height: 40px;
+    border: 2px solid #FFFFFF;
+    border-radius: 15px;
+}
+
+.rect6 .line1 {
+    position: relative;
+    top: 18.76px;
+    left: 4px;
+    width: 11.78px;
+    height: 0px;
+    border: 2px solid #FFFFFF;
+    transform: matrix(0.76, 0.64, -0.64, 0.77, 0, 0);
+}
+
+.rect6 .line2 {
+    position: relative;
+    top: 13px;
+    left: 11px;
+    width: 21.74px;
+    height: 0px;
+    border: 2px solid #FFFFFF;
+    transform: matrix(0.67, -0.75, 0.74, 0.68, 0, 0);
+}
+
+.mar {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    font-size: 32px;
+}
+
+.rect6 .line3 {
+    position: relative;
+    top: 18px;
+    left: 6px;
+    width: 25.46px;
+    height: 0px;
+    border: 2px solid #FFFFFF;
+    transform: rotate(45deg);
+}
+
+.rect6 .line4 {
+    position: relative;
+    top: 16px;
+    left: 6px;
+    width: 25.46px;
+    height: 0px;
+    border: 2px solid #FFFFFF;
+    transform: rotate(-45deg);
+}
+
+.lists .modal-mask {
+    transform: translate(-26.5%, -36.5%);
+}
+
+.scrolls {
+    height: 40vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }

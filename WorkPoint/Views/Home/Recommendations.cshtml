@@ -1,15 +1,73 @@
 ﻿@using WorkPoint.Models.Entities
-@model IEnumerable<Speciality>
+@model IEnumerable<SpecialityRecommendation>
 @{
     ViewData["Title"] = "Recommendations";
 }
 
-<div class="text-center">
-    <h1>Recommendations</h1>
+<div id="spec">
+    <div class="main_head">
+        <div class="txt">
+            <div class="row">
+                <div class="col-4"><div class="mhd"><div class="r">Work</div></div></div>
+                <div class="col-4"><div class="eclipse"></div></div>
+                <div class="col-4"><div class="mhd"><div class="l">Point</div></div></div>
+            </div>
+            Твоя точка відліку
+        </div>
+    </div>
+    <div class="lists">
+        <div class="main_head">
+            <div class="txt">
+                @if (Model.Any())
+                {
+                    <h1>Найбільш підходящі вакансії для вас:</h1>
+                }
+                else
+                {
+                    <h1>Для вас немає підходящих спеціальностей.</h1>
+                    <h1>Рекомендується здобувати більше навичок.</h1>
+                }
 
-    @foreach (Speciality speciality in Model)
-    {
-        <p>Name: @speciality.Name</p>
-        <p>Salary: @speciality.Salary</p>
-    }
+                @for (int i = 0; i < Model.Count(); ++i)
+                {
+                    <div type="button" class="mar" style="width: 1000px;" v-on:click="showModal@(i) = true">
+                        @(i + 1). @Model.ElementAt(i).Speciality.Name - @((int)(Model.ElementAt(i).SimilarityRatio * 100))%
+                    </div>
+                    <modal v-if="showModal@(i)" v-on:close="showModal@(i) = false">
+                        <h3 slot="header">@Model.ElementAt(i).Speciality.Name</h3>
+                        <div slot="body" style="width: 800px">
+                            <div class="scrolls">
+                                @foreach (var skill in Model.ElementAt(i).SkillsWithUserStatus)
+                                {
+                                    <div class="row align-items-center justify-content-center" style="height: 70px;">
+                                        @if (@skill.Value)
+                                        {
+                                            <div class="col-2">
+                                                <div class="rect6">
+                                                    <div class="line1"></div>
+                                                    <div class="line2"></div>
+                                                </div>
+                                            </div>
+                                        } 
+                                        else
+                                        {
+                                            <div class="col-2">
+                                                <div class="rect6">
+                                                    <div class="line3"></div>
+                                                    <div class="line4"></div>
+                                                </div>
+                                            </div>
+                                        }
+                                        <div class="col-10">
+                                            @skill.Key
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </modal>
+                }
+            </div>
+        </div>
+    </div>
 </div>

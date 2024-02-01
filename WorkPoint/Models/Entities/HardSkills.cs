@@ -28,9 +28,19 @@ namespace WorkPoint.Models.Entities
         public int ExtraSkillsId { get; set; }
         public ExtraSkills ExtraSkills { get; set; } = default!;
 
-        public List<ISkills> GetSkillsAsList()
+        public HardSkills()
         {
-            return new List<ISkills>
+            ProgrammingSkills = new ProgrammingSkills();
+            DBSkills = new DatabaseSkills();
+            MSOfficeSkills = new MicrosoftOfficeSkills();
+            OSSkills = new OperatingSystemSkills();
+            GESkills = new GraphicEditorsSkills();
+            ExtraSkills = new ExtraSkills();
+        }
+
+        public List<SomeSkills> GetSkillsAsList()
+        {
+            return new List<SomeSkills>
             {
                 ProgrammingSkills,
                 DBSkills,

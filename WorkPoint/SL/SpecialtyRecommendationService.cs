@@ -111,7 +111,7 @@ namespace WorkPoint.SL
             return suitableHardSkills;
         }
 
-        private static Dictionary<string, bool> GetSuitableSkills<TSkills>(TSkills userSkills, TSkills requiredSkills) where TSkills : ISkills
+        private static Dictionary<string, bool> GetSuitableSkills<TSkills>(TSkills userSkills, TSkills requiredSkills) where TSkills : SomeSkills
         {
             Dictionary<string, bool> suitableSkills = new Dictionary<string, bool>();
 
