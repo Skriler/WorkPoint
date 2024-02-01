@@ -40,29 +40,28 @@
                 <div class="txt">Назад</div>
             </a>
         </div>
-            <div v-else class="l">
-                <button v-on:click="i--" class="rect_2">
-                    <div class="txt">Назад</div>
-                </button>
-            </div>
-            <div v-if="!(i === 14)" class="r">
-                <button type="button" v-on:click="i++" class="rect_2">
-                    <div class="txt">Далі</div>
-                </button>
-            </div>
+        <div v-else class="l">
+            <button v-on:click="i--" class="rect_2">
+                <div class="txt">Назад</div>
+            </button>
         </div>
-    </div>
-    <div v-if="i === 14">
-        <form asp-controller="Home" asp-action="Recommendations" method="post" v-for="(q, k) in quests">
-            <div v-for="l in temp">
-                <input type="hidden" :name="l.name" :value="l.val">
-            </div>
-            <div class="r">
-                <button type="submit" class="rect_2">
-                    <div class="txt">Далі</div>
-                </button>
-            </div>
-        </form>
+        <div v-if="!(i === 14)" class="r">
+            <button type="button" v-on:click="i++" class="rect_2">
+                <div class="txt">Далі</div>
+            </button>
+        </div>
+        <div v-else>
+            <form asp-controller="Home" asp-action="Recommendations" method="post" v-for="(q, k) in quests">
+                <div v-for="l in temp">
+                    <input type="hidden" :name="l.name" :value="l.val">
+                </div>
+                <div class="r">
+                    <button type="submit" class="rect_2">
+                        <div class="txt">Далі</div>
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
@@ -95,7 +94,7 @@
                         { name: "ContentPromotion", val: "Просування контенту" }]
                     },
                     {
-                        id: 8, text: "Які мови програмування ви знаєте?(частина 1)", radio_check: false,
+                        id: 8, text: "Які навички програмування ви знаєте?(частина 1)", radio_check: false,
                         options: [{ name: "HTML", val: "HTML" },
                         { name: "CSS", val: "CSS" },
                         { name: "Bootstrap", val: "Bootstrap" },
@@ -113,7 +112,7 @@
                         { name: "TypeScript", val: "TypeScript" }]
                     },
                     {
-                        id: 9, text: "Які мови програмування ви знаєте?(частина 2)", radio_check: false,
+                        id: 9, text: "Які навички програмування ви знаєте?(частина 2)", radio_check: false,
                         options: [{ name: "CPlusPlus", val: "C++" },
                         { name: "CSharp", val: "C#" },
                         { name: "DOTNET", val: ".NET" },

@@ -89,6 +89,7 @@ button {
 
 .rect_2 .txt {
     font-size: 36px;
+    letter-spacing: 0em !important;
 }
 
 .rect_2 .txt:hover {
@@ -113,7 +114,7 @@ button {
 }
 
 .main_head .txt p {
-    width: 80vw;
+    width: 50vw;
     font-size: 30px;
     letter-spacing: 0;
 }
@@ -227,6 +228,7 @@ button {
 }
 
 .check {
+    height: 60px;
     border-radius: 30px;
     width: 17vw;
     border: 1px solid #fff;
@@ -317,8 +319,8 @@ button {
 }
 
 .mar {
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     font-size: 32px;
 }
 
