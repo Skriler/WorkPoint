@@ -19,7 +19,7 @@
                             <slot name="body"></slot>
                         </div>
                         <div class="modal-footer">
-                            <button class="rect_2 align-items-center justify-content-center" v-on:click="$emit('close')">
+                            <button class="rect_2" v-on:click="$emit('close')">
                                 <div class="txt">Закрити</div>
                             </button>
                         </div>
@@ -40,7 +40,7 @@
                 </div>
             </div>
             <div class="col-6" id="about_us">
-                <a type="button" id="show-modal" v-on:click="showModal = true" class="txt"><div class="up">Про нас</div></a>
+                <a type="button" id="show-modal" v-on:click="showModal = true" class="txt">Про нас</a>
                 <modal v-if="showModal" v-on:close="showModal = false">
                     <h3 slot="header">Про нас</h3>
                     <div slot="body">
@@ -54,7 +54,7 @@
         </div>
     </div>
     <div class="how" id="how_it_works">
-        <div type="button" id="show-modal" v-on:click="showModal = true" class="txt"><div class="up">Як це працює?</div></div>
+        <div type="button" id="show-modal" v-on:click="showModal = true" class="txt">Як це працює?</div>
         <modal v-if="showModal" v-on:close="showModal = false">
             <h3 slot="header">Як це працює?</h3>
             <div slot="body">
