@@ -62,7 +62,15 @@ namespace WorkPoint.SL
 
         private static HardSkills ParseHardSkills(Dictionary<string, string> userSkills)
         {
-            var hardSkills = new HardSkills();
+            var hardSkills = new HardSkills()
+            {
+                ProgrammingSkills = new ProgrammingSkills(),
+                DBSkills = new DatabaseSkills(),
+                MSOfficeSkills = new MicrosoftOfficeSkills(),
+                OSSkills = new OperatingSystemSkills(),
+                GESkills = new GraphicEditorsSkills(),
+                ExtraSkills = new ExtraSkills()
+            };
 
             Dictionary<string, bool> userSomeSkills;
 

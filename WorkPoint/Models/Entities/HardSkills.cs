@@ -1,15 +1,9 @@
-﻿using System.Collections;
-using System.ComponentModel.DataAnnotations;
-using System.Diagnostics;
-using WorkPoint.Models.Entities.Skills;
+﻿using WorkPoint.Models.Entities.Skills;
 
 namespace WorkPoint.Models.Entities
 {
-    public class HardSkills
+    public class HardSkills : SomeSkills
     {
-        [Key]
-        public int Id { get; set; }
-
         public int ProgrammingSkillsId { get; set; }
         public ProgrammingSkills ProgrammingSkills { get; set; } = default!;
 
@@ -27,16 +21,6 @@ namespace WorkPoint.Models.Entities
 
         public int ExtraSkillsId { get; set; }
         public ExtraSkills ExtraSkills { get; set; } = default!;
-
-        public HardSkills()
-        {
-            ProgrammingSkills = new ProgrammingSkills();
-            DBSkills = new DatabaseSkills();
-            MSOfficeSkills = new MicrosoftOfficeSkills();
-            OSSkills = new OperatingSystemSkills();
-            GESkills = new GraphicEditorsSkills();
-            ExtraSkills = new ExtraSkills();
-        }
 
         public List<SomeSkills> GetSkillsAsList()
         {
