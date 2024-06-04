@@ -1,58 +1,57 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using WorkPoint.Models;
+using WorkPoint.Models.ViewModels;
 using WorkPoint.SL;
 using WorkPoint.SL.DAL;
 
-namespace WorkPoint.Controllers
+namespace WorkPoint.Controllers;
+
+public class HomeController : Controller
 {
-    public class HomeController : Controller
+    private readonly WorkPointDbContext db;
+    private readonly SpecialityRepository specialityRepository;
+
+    public HomeController(WorkPointDbContext context)
     {
-        private readonly WorkPointDbContext db;
-        private readonly SpecialityRepository specialityRepository;
+        db = context;
+        specialityRepository = new SpecialityRepository(db);
+    }
 
-        public HomeController(WorkPointDbContext context)
+    [HttpGet]
+    public ViewResult Index()
+    {
+        return View();
+    }
+
+    [HttpGet]
+    public ViewResult Questions()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public async Task<ViewResult> Recommendations()
+    {
+        var specialities = await specialityRepository.GetSpecialityListAsync();
+        var userSkills = HttpContext.Request.Form
+            .ToDictionary(kv => kv.Key, kv => kv.Value.ToString());
+
+        var recommendations = SpecialtyRecommendationService.GetRecommendation(
+            UserInfoParser.Parse(userSkills),
+            specialities
+            );
+
+        foreach (var recommendation in recommendations)
         {
-            db = context;
-            specialityRepository = new SpecialityRepository(db);
+            recommendation.SkillsWithUserStatus = LocalizationService.GetLocalizedUkrainianDictionary(recommendation.SkillsWithUserStatus);
         }
 
-        [HttpGet]
-        public ViewResult Index()
-        {
-            return View();
-        }
+        return View(recommendations);
+    }
 
-        [HttpGet]
-        public ViewResult Questions()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public async Task<ViewResult> Recommendations()
-        {
-            var specialities = await specialityRepository.GetSpecialityListAsync();
-            var userSkills = HttpContext.Request.Form
-                .ToDictionary(kv => kv.Key, kv => kv.Value.ToString());
-
-            var recommendations = SpecialtyRecommendationService.GetRecommendation(
-                UserInfoParser.Parse(userSkills), 
-                specialities
-                );
-
-            foreach (var recommendation in recommendations)
-            {
-                recommendation.SkillsWithUserStatus = LocalizationService.GetLocalizedUkrainianDictionary(recommendation.SkillsWithUserStatus);
-            }
-
-            return View(recommendations);
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+    public IActionResult Error()
+    {
+        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 }
